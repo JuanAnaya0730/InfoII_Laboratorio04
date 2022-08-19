@@ -5,6 +5,8 @@
 #include <string>
 #include <map>
 
+#define INF 999999
+
 using namespace std;
 
 class router
