@@ -1,6 +1,8 @@
 #ifndef NETWORK_H
 #define NETWORK_H
 
+#include <iostream>
+#include <fstream>
 #include <vector>
 #include "router.h"
 
@@ -9,7 +11,7 @@ using namespace std;
 class network
 {
 private:
-    string file;
+    string name;
     vector<router> topology;
 
     string read();
