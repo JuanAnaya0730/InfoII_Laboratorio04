@@ -16,6 +16,7 @@ private:
 
     string read();
     void write(const string &data);
+    size_t findRouter(const string &nameRout);
 
 public:
     network();

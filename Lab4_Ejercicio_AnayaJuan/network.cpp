@@ -99,3 +99,11 @@ void network::write(const string &data)
     }
 }
 
+size_t network::findRouter(const string &nameRout)
+{
+    for(size_t i=0; i < topology.size(); ++i){
+        if(topology[i].getName() == nameRout){ return i; }
+    }
+
+    return 0;
+}
