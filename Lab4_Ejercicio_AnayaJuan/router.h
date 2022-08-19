@@ -15,6 +15,8 @@ private:
 
 public:
     router();
+
+    const string &getName() const;
 };
 
 #endif // ROUTER_H
