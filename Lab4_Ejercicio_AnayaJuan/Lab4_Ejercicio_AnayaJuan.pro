@@ -6,8 +6,10 @@ CONFIG -= qt
 SOURCES += \
         main.cpp \
         network.cpp \
-        router.cpp
+        router.cpp \
+        tools.cpp
 
 HEADERS += \
     network.h \
-    router.h
+    router.h \
+    tools.h
