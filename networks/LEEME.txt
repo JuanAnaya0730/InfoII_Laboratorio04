@@ -1,1 +1,17 @@
-Aqui es donde se deben guardar las redes que seran cargadas en la aplicacion.
+En esta carpeta es donde se deben guardar las redes que seran cargadas en la aplicacion.
+
+1. El fortmato para crear una red manualmente es el siguiente.
+
+nombreEnrutador0:{nombreEnrutador0:costoConEnrutador0 nombreEnrutador1:costoConEnrutador1 nombreEnrutadorN:costoConEnrutadorN}
+nombreEnrutador1:{nombreEnrutador0:costoConEnrutador0 nombreEnrutador1:costoConEnrutador1 nombreEnrutadorN:costoConEnrutadorN}
+nombreEnrutadorN:{nombreEnrutador0:costoConEnrutador0 nombreEnrutador1:costoConEnrutador1 nombreEnrutadorN:costoConEnrutadorN}
+
+Si el enrutador no tiene conexion directa con otro simplemente se debe poner un '-' en el costo con ese enrutador.
+
+Ejemplo de red valida:
+A:{B:4 C:10 D:-}
+B:{A:4 C:- D:1}
+C:{A:10 B:- D:2}
+D:{A:- B:1 C:2}
+
+PD: No es necesario especificar el costo de un enrutador consigo mismo ya que esta siempre es 0.
