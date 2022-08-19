@@ -22,6 +22,8 @@ public:
 
     void load_network(const string &name);
     void save_network();
+
+    void complete();
 };
 
 #endif // NETWORK_H
