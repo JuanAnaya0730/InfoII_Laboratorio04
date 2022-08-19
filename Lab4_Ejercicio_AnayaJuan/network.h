@@ -15,7 +15,7 @@ private:
     vector<router> topology;
 
     string read();
-    void write();
+    void write(const string &data);
 
 public:
     network();
