@@ -15,6 +15,7 @@ private:
 
 public:
     router();
+    router(const string &name);
 
     const string &getName() const;
 };
