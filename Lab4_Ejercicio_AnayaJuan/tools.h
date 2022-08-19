@@ -1,11 +1,11 @@
 #ifndef TOOLS_H
 #define TOOLS_H
 
+#include <iostream>
+#include <string>
 
-class tools
-{
-public:
-    tools();
-};
+using namespace std;
+
+int menu(const int &type);
 
 #endif // TOOLS_H
