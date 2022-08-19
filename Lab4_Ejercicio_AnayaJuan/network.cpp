@@ -28,7 +28,7 @@ void network::load_network(const string &name)
 
             if(cost.find(' ') != string::npos){ cost = cost.substr(cost.find(' ')+1, cost.length()); }
             else{ cost.clear(); }
-        }cout << endl;
+        }
 
         data = data.substr(data.find('}')+1, data.length());
     }
@@ -37,6 +37,19 @@ void network::load_network(const string &name)
 void network::save_network()
 {
 
+}
+
+void network::complete()
+{
+    for(size_t k=0; k < topology.size(); ++k){
+        for(size_t i=0; i < topology.size(); ++i){
+            for(size_t j=0; j < topology.size(); ++j){
+                if(topology[i].getCost(topology[k].getName()) + topology[k].getCost(topology[j].getName()) < topology[i].getCost(topology[j].getName())){
+                    topology[i].addConection(topology[j].getName(), topology[i].getCost(topology[k].getName()) + topology[k].getCost(topology[j].getName()));
+                }
+            }
+        }
+    }
 }
 
 string network::read()
