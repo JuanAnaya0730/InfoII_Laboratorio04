@@ -52,6 +52,11 @@ void network::complete()
     }
 }
 
+int network::cost(const string &startRouter, const string &destinationRouter)
+{
+    return topology[findRouter(startRouter)].getCost(destinationRouter);
+}
+
 string network::read()
 {
     ifstream file; // Archivo a leer
