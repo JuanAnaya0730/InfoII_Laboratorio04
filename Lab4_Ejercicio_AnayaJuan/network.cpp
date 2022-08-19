@@ -8,6 +8,30 @@ network::network()
 void network::load_network(const string &name)
 {
     this->name = name;
+    string data = read();
+    string node;
+    string cost;
+
+    for(size_t i=0; !data.empty(); ++i){
+        node = data.substr(0, data.find('}')+1);
+        topology.push_back(router(node.substr(0, node.find(':'))));
+
+        cost = node.substr(0, node.find('{')+1);
+        cost = node.substr(node.find('{')+1, node.length() - 1 - cost.length());
+
+        while(!cost.empty()){
+            if(cost.substr(cost.find(":")+1, cost.find(" ")-2) == "-"){
+                topology[i].addConection(cost.substr(0, cost.find(':')), INF);
+            }else{
+                topology[i].addConection(cost.substr(0, cost.find(':')), stoi(cost.substr(cost.find(":")+1, cost.find(" ")-2)));
+            }
+
+            if(cost.find(' ') != string::npos){ cost = cost.substr(cost.find(' ')+1, cost.length()); }
+            else{ cost.clear(); }
+        }cout << endl;
+
+        data = data.substr(data.find('}')+1, data.length());
+    }
 }
 
 void network::save_network()
@@ -49,7 +73,7 @@ void network::write(const string &data)
 
     ofstream file; // Archivo a escribir
 
-    file.open("../data/" + name); // Se abre el archivo
+    file.open("../networks/" + name); // Se abre el archivo
     if (file.is_open()){ // Se verifica si el archivo abrio correctamente
 
         file << data; // Se escribe en el archivo
