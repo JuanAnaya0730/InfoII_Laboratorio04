@@ -9,6 +9,10 @@ using namespace std;
 
 class router
 {
+private:
+    string name;
+    map<string, size_t> connections;
+
 public:
     router();
 };
