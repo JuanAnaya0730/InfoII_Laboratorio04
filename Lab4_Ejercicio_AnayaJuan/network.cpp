@@ -43,8 +43,22 @@ string network::read()
     return data; // Se retorna el contenido del archivo
 }
 
-void network::write()
+void network::write(const string &data)
 {
+    // data sera el contenido del archivo
 
+    ofstream file; // Archivo a escribir
+
+    file.open("../data/" + name); // Se abre el archivo
+    if (file.is_open()){ // Se verifica si el archivo abrio correctamente
+
+        file << data; // Se escribe en el archivo
+
+        file.close(); // Se cierra el archivo
+    }
+    else{ // Si el archivo no se pudo abrir se muestra el mensaje correspondiente y finaliza el programa
+        cout << "Error al crear o abrir el archivo " << name << endl;
+        exit(1);
+    }
 }
 
