@@ -5,9 +5,9 @@ network::network()
 
 }
 
-void network::load_network()
+void network::load_network(const string &name)
 {
-
+    this->name = name;
 }
 
 void network::save_network()

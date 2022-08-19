@@ -20,7 +20,7 @@ private:
 public:
     network();
 
-    void load_network();
+    void load_network(const string &name);
     void save_network();
 };
 
