@@ -20,6 +20,7 @@ public:
     router(const string &name);
 
     const string &getName() const;
+    const size_t &getCost(string &name);
     void addConection(const string &nameNode, const size_t &cost);
 
 };
