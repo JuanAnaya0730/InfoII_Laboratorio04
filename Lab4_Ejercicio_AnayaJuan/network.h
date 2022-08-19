@@ -25,6 +25,8 @@ public:
     void save_network();
 
     void complete();
+
+    int cost(const string &startRouter, const string &destinationRouter);
 };
 
 #endif // NETWORK_H
