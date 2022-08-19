@@ -18,6 +18,8 @@ public:
     router(const string &name);
 
     const string &getName() const;
+    void addConection(const string &nameNode, const size_t &cost);
+
 };
 
 #endif // ROUTER_H
