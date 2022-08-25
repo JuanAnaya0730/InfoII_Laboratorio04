@@ -20,8 +20,9 @@ public:
     router(const string &name);
 
     const string &getName() const;
-    size_t getCost(const string &name) const;
+    const size_t &getCost(const string &name) const;
     void addConection(const string &nameNode, const size_t &cost);
+    void deleteConnection(const string &name);
 };
 
 #endif // ROUTER_H
