@@ -14,19 +14,32 @@ int main()
         getline(cin, aux[0]); system("cls");
 
         _network_.load_network(aux[0]);
+        cout << "Red cargada con exito.\n" << endl;
 
     }else{
         cout << "red aleatoria aun no se hace XD" << endl;
     }
 
+    cout << _network_ << endl;
+
     while(true){
+        system("pause"); system("cls");
         option = menu(1);
 
         if(option == 1){
             cout << "agregar enrutador" << endl;
 
         }else if(option == 2){
-            cout << "eliminar enrutador" << endl;
+            cout << "Ingrese el nombre del enrutador a eliminar\n -> ";
+            getline(cin, aux[0]); system("cls");
+
+            if(_network_.exist(aux[0])){
+                _network_.deleteRouter(aux[0]);
+
+                cout << "Enrutador eliminado con exito.\n" << endl;
+                cout << _network_ << endl;
+
+            }else{cout << "El enrutador " << aux[0] << " no existe.\n" << endl; }
 
         }else if(option == 3){
             cout << "Ingrese el enrutador de partida\n -> ";
@@ -38,12 +51,10 @@ int main()
             cout << "El menor costo de envio de " << aux[0] << " hasta " << aux[1]
                  << " es de " << _network_.bestCost(aux[0], aux[1]) << endl;
 
-            system("pause"); system("cls");
-
         }else if(option == 4){
             cout << "Camino de envio" << endl;
 
-        }else{ break; };
+        }else{ break; };                
     }
 
     return 0;
