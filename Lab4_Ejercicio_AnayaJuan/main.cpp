@@ -27,7 +27,27 @@ int main()
         option = menu(1);
 
         if(option == 1){
-            cout << "agregar enrutador" << endl;
+            router newRouter;
+
+            cout << "Ingrese el nombre del nuevo enrutador\n -> ";
+            getline(cin, aux[0]); system("cls");
+
+            if(!_network_.exist(aux[0])){
+                newRouter.setName(aux[0]);
+
+                for(size_t i=0; i < _network_.size(); ++i){
+                    cout << "Ingrese el valor de la conexion con " << _network_.names()[i] << "\n -> ";
+                    getline(cin, aux[0]); system("cls");
+
+                    if(aux[0] == "~"){ newRouter.addConection(_network_.names()[i], INF); }
+                    else{ newRouter.addConection(_network_.names()[i], stoi(aux[0])); }
+                }
+                _network_.addRouter(newRouter);
+
+                cout << "Enrutador agregado con exito.\n" << endl;
+                cout << _network_ << endl;
+
+            }else{ cout << "El enrutador ya esta en la red.\n" << endl; }
 
         }else if(option == 2){
             cout << "Ingrese el nombre del enrutador a eliminar\n -> ";
