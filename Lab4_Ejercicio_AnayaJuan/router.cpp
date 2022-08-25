@@ -8,7 +8,6 @@ router::router()
 router::router(const string &name)
 {
     this->name = name;
-
     connections[name] = 0;
 }
 
@@ -17,9 +16,10 @@ const string &router::getName() const
     return name;
 }
 
-void router::setName(const string &newName)
+void router::setName(const string &name)
 {
-    name = newName;
+    this->name = name;
+    connections[name] = 0;
 }
 
 const size_t &router::getCost(const string &name) const
@@ -27,9 +27,9 @@ const size_t &router::getCost(const string &name) const
     return connections.find(name)->second;
 }
 
-void router::addConection(const string &nameNode, const size_t &cost)
+void router::addConection(const string &name, const size_t &cost)
 {
-    connections[nameNode] = cost;
+    connections[name] = cost;
 }
 
 void router::deleteConnection(const string &name)
