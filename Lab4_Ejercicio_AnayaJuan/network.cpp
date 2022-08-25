@@ -14,16 +14,16 @@ void network::load_network(const string &name)
 
     for(size_t i=0; !data.empty(); ++i){
         node = data.substr(0, data.find('}')+1);
-        topology.push_back(router(node.substr(0, node.find(':'))));
+        optimizedTopology.push_back(router(node.substr(0, node.find(':'))));
 
         cost = node.substr(0, node.find('{')+1);
         cost = node.substr(node.find('{')+1, node.length() - 1 - cost.length());
 
         while(!cost.empty()){
             if(cost.substr(cost.find(":")+1, cost.find(" ")-2) == "-"){
-                topology[i].addConection(cost.substr(0, cost.find(':')), INF);
+                optimizedTopology[i].addConection(cost.substr(0, cost.find(':')), INF);
             }else{
-                topology[i].addConection(cost.substr(0, cost.find(':')), stoi(cost.substr(cost.find(":")+1, cost.find(" ")-2)));
+                optimizedTopology[i].addConection(cost.substr(0, cost.find(':')), stoi(cost.substr(cost.find(":")+1, cost.find(" ")-2)));
             }
 
             if(cost.find(' ') != string::npos){ cost = cost.substr(cost.find(' ')+1, cost.length()); }
@@ -41,11 +41,11 @@ void network::save_network()
 
 void network::complete()
 {
-    for(size_t k=0; k < topology.size(); ++k){
-        for(size_t i=0; i < topology.size(); ++i){
-            for(size_t j=0; j < topology.size(); ++j){
-                if(topology[i].getCost(topology[k].getName()) + topology[k].getCost(topology[j].getName()) < topology[i].getCost(topology[j].getName())){
-                    topology[i].addConection(topology[j].getName(), topology[i].getCost(topology[k].getName()) + topology[k].getCost(topology[j].getName()));
+    for(size_t k=0; k < optimizedTopology.size(); ++k){
+        for(size_t i=0; i < optimizedTopology.size(); ++i){
+            for(size_t j=0; j < optimizedTopology.size(); ++j){
+                if(optimizedTopology[i].getCost(optimizedTopology[k].getName()) + optimizedTopology[k].getCost(optimizedTopology[j].getName()) < optimizedTopology[i].getCost(optimizedTopology[j].getName())){
+                    optimizedTopology[i].addConection(optimizedTopology[j].getName(), optimizedTopology[i].getCost(optimizedTopology[k].getName()) + optimizedTopology[k].getCost(optimizedTopology[j].getName()));
                 }
             }
         }
@@ -54,29 +54,29 @@ void network::complete()
 
 int network::cost(const string &startRouter, const string &destinationRouter)
 {
-    return topology[findRouter(startRouter)].getCost(destinationRouter);
+    return optimizedTopology[findRouter(startRouter)].getCost(destinationRouter);
 }
 
 void network::addRouter(const router &newRouter)
 {
-    for(size_t i=0; i < topology.size(); ++i){
-        topology[i].addConection(newRouter.getName(), newRouter.getCost(topology[i].getName()));
+    for(size_t i=0; i < optimizedTopology.size(); ++i){
+        optimizedTopology[i].addConection(newRouter.getName(), newRouter.getCost(optimizedTopology[i].getName()));
     }
-    topology.push_back(newRouter);
+    optimizedTopology.push_back(newRouter);
 }
 
 void network::deleteRouter(const string &name)
 {
-    for(size_t i=0; i < topology.size(); ++i){
-        topology[i].deleteConnection(name);
+    for(size_t i=0; i < optimizedTopology.size(); ++i){
+        optimizedTopology[i].deleteConnection(name);
     }
-    topology.erase(topology.begin() + findRouter(name));
+    optimizedTopology.erase(optimizedTopology.begin() + findRouter(name));
 }
 
 bool network::exist(const string &name)
 {
-    for(size_t i=0; i < topology.size(); ++i){
-        if(topology[i].getName() == name){ return true; }
+    for(size_t i=0; i < optimizedTopology.size(); ++i){
+        if(optimizedTopology[i].getName() == name){ return true; }
     }
     return false;
 }
@@ -130,8 +130,8 @@ void network::write(const string &data)
 
 size_t network::findRouter(const string &nameRout)
 {
-    for(size_t i=0; i < topology.size(); ++i){
-        if(topology[i].getName() == nameRout){ return i; }
+    for(size_t i=0; i < optimizedTopology.size(); ++i){
+        if(optimizedTopology[i].getName() == nameRout){ return i; }
     }
 
     return 0;
