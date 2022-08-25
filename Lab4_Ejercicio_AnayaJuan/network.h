@@ -32,6 +32,8 @@ public:
     void deleteRouter(const string &name);
 
     bool exist(const string &name);
+    const vector<string> names() const;
+    size_t size() const;
 
     friend ostream& operator<<(ostream &out, const network &network)
     {
