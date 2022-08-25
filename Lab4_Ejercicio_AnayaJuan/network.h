@@ -17,8 +17,7 @@ private:
 
     string read();
     void write(const string &data);
-    size_t findRouter(const string &nameRout);
-    bool exist(const string &name);
+    size_t findRouter(const string &nameRout);    
 
 public:
     network();
@@ -31,6 +30,8 @@ public:
 
     void addRouter(const router &newRouter);
     void deleteRouter(const string &name);
+
+    bool exist(const string &name);
 
     friend ostream& operator<<(ostream &out, const network &network)
     {
