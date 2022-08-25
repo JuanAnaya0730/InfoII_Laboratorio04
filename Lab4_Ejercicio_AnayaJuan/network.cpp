@@ -57,6 +57,18 @@ int network::cost(const string &startRouter, const string &destinationRouter)
     return topology[findRouter(startRouter)].getCost(destinationRouter);
 }
 
+void network::deleteRouter(const string &name)
+{
+    if(exist(name)){
+        for(size_t i=0; i < topology.size(); ++i){
+            if(topology[i].getName() == name){
+                topology.erase(topology.begin() + findRouter(name));
+            }
+            topology[i].deleteConnection(name);
+        }
+    }
+}
+
 string network::read()
 {
     ifstream file; // Archivo a leer
@@ -111,4 +123,12 @@ size_t network::findRouter(const string &nameRout)
     }
 
     return 0;
+}
+
+bool network::exist(const string &name)
+{
+    for(size_t i=0; i < topology.size(); ++i){
+        if(topology[i].getName() == name){ return true; }
+    }
+    return false;
 }
