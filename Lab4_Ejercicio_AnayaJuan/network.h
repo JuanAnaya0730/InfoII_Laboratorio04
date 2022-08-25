@@ -29,6 +29,7 @@ public:
     void complete();
     int cost(const string &startRouter, const string &destinationRouter);
 
+    void addRouter(const router &newRouter);
     void deleteRouter(const string &name);
 
     friend ostream& operator<<(ostream &out, const network &network)
