@@ -67,14 +67,20 @@ void network::addRouter(const router &newRouter)
 
 void network::deleteRouter(const string &name)
 {
-    if(exist(name)){
-        for(size_t i=0; i < topology.size(); ++i){
-            if(topology[i].getName() == name){
-                topology.erase(topology.begin() + findRouter(name));
-            }
-            topology[i].deleteConnection(name);
+    for(size_t i=0; i < topology.size(); ++i){
+        if(topology[i].getName() == name){
+            topology.erase(topology.begin() + findRouter(name));
         }
+        topology[i].deleteConnection(name);
     }
+}
+
+bool network::exist(const string &name)
+{
+    for(size_t i=0; i < topology.size(); ++i){
+        if(topology[i].getName() == name){ return true; }
+    }
+    return false;
 }
 
 string network::read()
@@ -131,12 +137,4 @@ size_t network::findRouter(const string &nameRout)
     }
 
     return 0;
-}
-
-bool network::exist(const string &name)
-{
-    for(size_t i=0; i < topology.size(); ++i){
-        if(topology[i].getName() == name){ return true; }
-    }
-    return false;
 }
