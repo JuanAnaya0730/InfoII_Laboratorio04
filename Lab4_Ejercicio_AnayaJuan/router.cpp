@@ -17,7 +17,7 @@ const string &router::getName() const
     return name;
 }
 
-size_t router::getCost(const string &name)
+size_t router::getCost(const string &name) const
 {
     return connections.find(name)->second;
 }
