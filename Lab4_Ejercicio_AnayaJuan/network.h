@@ -28,6 +28,8 @@ public:
     void complete();
     int cost(const string &startRouter, const string &destinationRouter);
 
+    void deleteRouter(string &name);
+
     friend ostream& operator<<(ostream &out, const network &network)
     {
         out << left << setw(7) << " name ";
