@@ -18,6 +18,7 @@ private:
     string read();
     void write(const string &data);
     size_t findRouter(const string &nameRout);
+    bool exist(const string &name);
 
 public:
     network();
@@ -28,7 +29,7 @@ public:
     void complete();
     int cost(const string &startRouter, const string &destinationRouter);
 
-    void deleteRouter(string &name);
+    void deleteRouter(const string &name);
 
     friend ostream& operator<<(ostream &out, const network &network)
     {
