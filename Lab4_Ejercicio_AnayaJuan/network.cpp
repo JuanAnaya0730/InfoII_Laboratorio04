@@ -57,6 +57,14 @@ int network::cost(const string &startRouter, const string &destinationRouter)
     return topology[findRouter(startRouter)].getCost(destinationRouter);
 }
 
+void network::addRouter(const router &newRouter)
+{
+    for(size_t i=0; i < topology.size(); ++i){
+        topology[i].addConection(newRouter.getName(), newRouter.getCost(topology[i].getName()));
+    }
+    topology.push_back(newRouter);
+}
+
 void network::deleteRouter(const string &name)
 {
     if(exist(name)){
