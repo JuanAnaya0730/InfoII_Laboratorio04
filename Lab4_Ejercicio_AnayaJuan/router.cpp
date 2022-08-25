@@ -26,3 +26,8 @@ void router::addConection(const string &nameNode, const size_t &cost)
 {
     connections[nameNode] = cost;
 }
+
+void router::deleteConnection(const string &name)
+{
+    connections.erase(name);
+}
