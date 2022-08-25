@@ -14,7 +14,6 @@ class network
 private:
     string name;
     vector<router> topology;
-    vector<router> optimizedTopology;
 
     string read();
     void write(const string &data);
@@ -27,7 +26,7 @@ public:
     void save_network();
 
     void complete();
-    int cost(const string &startRouter, const string &destinationRouter);
+    size_t bestCost(const string &startRouter, const string &destinationRouter);
 
     void addRouter(const router &newRouter);
     void deleteRouter(const string &name);
@@ -37,15 +36,15 @@ public:
     friend ostream& operator<<(ostream &out, const network &network)
     {
         out << left << setw(7) << " name ";
-        for(size_t i=0; i < network.optimizedTopology.size(); ++i){
-            out << setw(7) << network.optimizedTopology[i].getName();
+        for(size_t i=0; i < network.topology.size(); ++i){
+            out << setw(7) << network.topology[i].getName();
         }out << endl;
 
-        for(size_t i=0; i < network.optimizedTopology.size(); ++i){
-            out << setw(7) << network.optimizedTopology[i].getName();
-            for(size_t j=0; j < network.optimizedTopology.size(); ++j){
-                if(!(network.optimizedTopology[i].getCost(network.optimizedTopology[j].getName()) == INF)){
-                    out << setw(7) << network.optimizedTopology[i].getCost(network.optimizedTopology[j].getName());
+        for(size_t i=0; i < network.topology.size(); ++i){
+            out << setw(7) << network.topology[i].getName();
+            for(size_t j=0; j < network.topology.size(); ++j){
+                if(!(network.topology[i].getCost(network.topology[j].getName()) == INF)){
+                    out << setw(7) << network.topology[i].getCost(network.topology[j].getName());
                 }else{ out << setw(7) << "~"; }
             }out << endl;
         }
