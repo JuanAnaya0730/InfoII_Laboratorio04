@@ -19,8 +19,6 @@ int main()
         cout << "red aleatoria aun no se hace XD" << endl;
     }
 
-    _network_.complete();
-
     while(true){
         option = menu(1);
 
@@ -38,7 +36,7 @@ int main()
             getline(cin, aux[1]); system("cls");
 
             cout << "El menor costo de envio de " << aux[0] << " hasta " << aux[1]
-                 << " es de " << _network_.cost(aux[0], aux[1]) << endl;
+                 << " es de " << _network_.bestCost(aux[0], aux[1]) << endl;
 
             system("pause"); system("cls");
 
