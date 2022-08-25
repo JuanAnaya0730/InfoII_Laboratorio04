@@ -13,6 +13,7 @@ class network
 {
 private:
     string name;
+    vector<router> topology;
     vector<router> optimizedTopology;
 
     string read();
