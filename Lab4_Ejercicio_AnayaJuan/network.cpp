@@ -93,6 +93,20 @@ bool network::exist(const string &name)
     return false;
 }
 
+const vector<string> network::names() const
+{
+    vector<string> names;
+    for(size_t i=0; i < topology.size(); ++i){
+        names.push_back(topology[i].getName());
+    }
+    return names;
+}
+
+size_t network::size() const
+{
+    return topology.size();
+}
+
 string network::read()
 {
     ifstream file; // Archivo a leer
