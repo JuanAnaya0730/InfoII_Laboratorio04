@@ -68,11 +68,9 @@ void network::addRouter(const router &newRouter)
 void network::deleteRouter(const string &name)
 {
     for(size_t i=0; i < topology.size(); ++i){
-        if(topology[i].getName() == name){
-            topology.erase(topology.begin() + findRouter(name));
-        }
         topology[i].deleteConnection(name);
     }
+    topology.erase(topology.begin() + findRouter(name));
 }
 
 bool network::exist(const string &name)
