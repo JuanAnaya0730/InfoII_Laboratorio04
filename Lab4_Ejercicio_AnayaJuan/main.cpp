@@ -84,7 +84,10 @@ int main()
         }else if(option == 4){
             cout << "Camino de envio\n" << endl;
 
-        }else{ break; };                
+        }else{
+            _network_.save_network();
+            break;
+        };
     }
 
     return 0;
