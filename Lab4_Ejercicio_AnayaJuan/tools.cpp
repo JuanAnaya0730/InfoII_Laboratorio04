@@ -26,9 +26,9 @@ int menu(const int &type)
             cout << "Que desea hacer?\n"
                     "  1. Agregar enrutador.\n"
                     "  2. Eliminar enrutador.\n"
-                    "  3. Costo de envio.\n"
-                    "  4. Camino para envio\n"
-                    "  5. Salir\n "
+                    "  3. Consultar costo mas bajo.\n"
+                    "  4. Consultar camino mas barato.\n"
+                    "  5. Salir.\n "
                     " Opcion: ";
             cin >> option; cin.ignore(); // Se toma la opcion ingresada
 
