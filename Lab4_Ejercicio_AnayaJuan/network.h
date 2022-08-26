@@ -5,6 +5,8 @@
 #include <iomanip>
 #include <fstream>
 #include <vector>
+#include <stdlib.h>
+#include <time.h>
 #include "router.h"
 
 using namespace std;
@@ -26,6 +28,7 @@ public:
     void save_network();
 
     void complete();
+    void random(const size_t &numRouters);
     size_t bestCost(const string &startRouter, const string &destinationRouter);
 
     void addRouter(const router &newRouter);
