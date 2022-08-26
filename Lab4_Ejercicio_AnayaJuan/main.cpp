@@ -17,7 +17,11 @@ int main()
         cout << "Red cargada con exito.\n" << endl;
 
     }else{
-        cout << "red aleatoria aun no se hace XD" << endl;
+        cout << "Ingrese la cantidad de routers que desea\n -> ";
+        getline(cin, aux[0]); system("cls");
+
+        _network_.random(stoi(aux[0]));
+        cout << "Red generada con exito.\n" << endl;
     }
 
     cout << _network_ << endl;
