@@ -69,14 +69,20 @@ int main()
             cout << "Ingrese el enrutador de partida\n -> ";
             getline(cin, aux[0]); system("cls");
 
-            cout << "Ingrese el enrutador destino\n -> ";
-            getline(cin, aux[1]); system("cls");
+            if(_network_.exist(aux[0])){
+                cout << "Ingrese el enrutador destino\n -> ";
+                getline(cin, aux[1]); system("cls");
 
-            cout << "El menor costo de envio de " << aux[0] << " hasta " << aux[1]
-                 << " es de " << _network_.bestCost(aux[0], aux[1]) << endl;
+                if(_network_.exist(aux[1])){
+                    cout << "El menor costo mas bajo de " << aux[0] << " hasta " << aux[1]
+                         << " es de " << _network_.bestCost(aux[0], aux[1]) << ".\n" << endl;
+                    continue;
+                }
+            }
+            cout << "El enrutador ingresado no existe.\n" << endl;
 
         }else if(option == 4){
-            cout << "Camino de envio" << endl;
+            cout << "Camino de envio\n" << endl;
 
         }else{ break; };                
     }
