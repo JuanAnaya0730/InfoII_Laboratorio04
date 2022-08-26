@@ -1,9 +1,6 @@
 #include "network.h"
 
-network::network()
-{
-
-}
+network::network(){}
 
 void network::load_network(const string &name)
 {
@@ -36,11 +33,28 @@ void network::load_network(const string &name)
 
 void network::save_network()
 {
+    string data;
 
+    for(size_t i=0; i < size(); ++i){
+        data += topology[i].getName() + ":{";
+        for(size_t j=0; j < size(); ++j){
+            data += topology[j].getName() + ":";
+            if(topology[i].getCost(topology[j].getName()) == INF){ data += "- "; }
+            else{
+                data += to_string(topology[i].getCost(topology[j].getName())) + " ";
+            }
+        }
+        data.pop_back();
+        data += "}\n";
+    }
+    data.pop_back();
+    write(data);
 }
 
 void network::random(const size_t &numRouters)
 {
+    name = "rand_network.txt";
+
     srand(time(NULL));
     vector<char> letters;
     for(int i=65; i<=90; ++i){ letters.push_back(i); }
