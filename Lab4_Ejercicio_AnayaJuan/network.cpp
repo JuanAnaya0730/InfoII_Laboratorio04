@@ -39,19 +39,6 @@ void network::save_network()
 
 }
 
-void network::complete()
-{
-    for(size_t k=0; k < topology.size(); ++k){
-        for(size_t i=0; i < topology.size(); ++i){
-            for(size_t j=0; j < topology.size(); ++j){
-                if(topology[i].getCost(topology[k].getName()) + topology[k].getCost(topology[j].getName()) < topology[i].getCost(topology[j].getName())){
-                    topology[i].addConection(topology[j].getName(), topology[i].getCost(topology[k].getName()) + topology[k].getCost(topology[j].getName()));
-                }
-            }
-        }
-    }
-}
-
 void network::random(const size_t &numRouters)
 {
     srand(time(NULL));
