@@ -52,6 +52,30 @@ void network::complete()
     }
 }
 
+void network::random(const size_t &numRouters)
+{
+    srand(time(NULL));
+    vector<char> letters;
+    for(int i=65; i<=90; ++i){ letters.push_back(i); }
+
+    for(size_t i=0; i < numRouters; ++i){
+        size_t random = rand()%letters.size();
+        topology.push_back(router(string(1, letters[random])));
+        letters.erase(letters.begin()+random);
+    }
+
+    for(size_t i=0; i < topology.size(); ++i){
+        for(size_t j=0; j<topology.size(); ++j){
+            if(j != i){
+                if(rand()%3){ topology[i].addConection(topology[j].getName(), 1+rand()%15); }
+                else{ topology[i].addConection(topology[j].getName(), INF); }
+
+                topology[j].addConection(topology[i].getName(), topology[i].getCost(topology[j].getName()));
+            }
+        }
+    }
+}
+
 size_t network::bestCost(const string &startRouter, const string &destinationRouter)
 {
     vector<router> optimizedTopology = topology;
@@ -60,7 +84,6 @@ size_t network::bestCost(const string &startRouter, const string &destinationRou
             for(size_t j=0; j < optimizedTopology.size(); ++j){
                 if(optimizedTopology[i].getCost(optimizedTopology[k].getName()) + optimizedTopology[k].getCost(optimizedTopology[j].getName()) < optimizedTopology[i].getCost(optimizedTopology[j].getName())){
                     optimizedTopology[i].addConection(optimizedTopology[j].getName(), optimizedTopology[i].getCost(optimizedTopology[k].getName()) + optimizedTopology[k].getCost(optimizedTopology[j].getName()));
-                    //cout << topology[k].getName() << topology[i].getName() << topology[j].getName() << endl;
                 }
             }
         }
